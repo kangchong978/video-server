@@ -1,11 +1,18 @@
-const http = require('http');
+// const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const WebSocket = require('ws');
 
+// Yes, TLS is required for WebRTC
+const serverConfig = {
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem'),
+};
+
 let url = '';
 
-const server = http.createServer((req, res) => {
+const server = https.createServer(serverConfig, (req, res) => {
     if (req.method === 'GET' && req.url === '/video') {
         const videoPath = './video/video.mp4';
         try {
