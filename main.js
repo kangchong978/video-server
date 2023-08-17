@@ -48,8 +48,8 @@ const server = https.createServer(serverConfig, (req, res) => {
             res.end('Not found');
         }
     } else {
-        res.statusCode = 404;
-        res.end('Not found');
+        res.statusCode = 200;
+        res.end('Server running');
     }
 });
 
